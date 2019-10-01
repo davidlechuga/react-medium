@@ -2,6 +2,15 @@ import React from 'react'
 
 import NavbarBrand from './NavbarBrand'
 import NavbarCollapse from './NavbarCollapse'
+import NavbarToggler from './NavbarToggler'
+
+import NavbarNav from './NavbarNav'
+import NavbarNavItem from './NavbarNavItem'
+import NavbarNavLink from './NavbarNavLink'
+
+import DropdownMenu from './DropdownMenu'
+import DropdownMenuItem from './DropdownMenuItem'
+
 
 function Navbar() {
   return (
@@ -20,8 +29,8 @@ function Navbar() {
       </button>
 
       <NavbarCollapse>
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
+        <NavbarNav>
+          <NavbarNavItem active>
             <a
               className="nav-link"
               href="/"
@@ -29,37 +38,32 @@ function Navbar() {
               Home
               <span className="sr-only">(current)</span>
             </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              href="/"
-            >
-              Link
-            </a>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="/"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <div
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdown"
-            >
-              <a
-                className="dropdown-item"
-                href="/"
-              >
-                Action
-              </a>
+            </NavbarNavItem>
+            <NavbarNavItem >
+              <NavbarNavLink
+                to="/home"
+                text="HOME"
+                label="go to home page (current)"
+
+              />
+            </NavbarNavItem>
+            <NavbarNavItem dropdown>
+            <NavbarNavLink
+                id= "navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                text="Dropdown"
+                dropdownToggle
+            />
+            <DropdownMenu arialLabelledBy="dropdownmenu">
+              <DropdownMenuItem
+                to = "/"
+                arialLabelledBy="menuitem"
+
+              />
+               
               <a
                 className="dropdown-item"
                 href="/"
@@ -73,9 +77,9 @@ function Navbar() {
               >
                 Something else here
               </a>
-            </div>
-          </li>
-          <li className="nav-item">
+              </DropdownMenu>
+          </NavbarNavItem>
+          <NavbarNavItem >
             <a
               className="nav-link disabled"
               href="/"
@@ -83,8 +87,8 @@ function Navbar() {
             >
               Disabled
             </a>
-          </li>
-        </ul>
+           </NavbarNavItem>
+         </NavbarNav>
         <form
           className="form-inline my-2 my-lg-0"
         >
