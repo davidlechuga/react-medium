@@ -1,5 +1,6 @@
 import React from 'react'
 
+<<<<<<< HEAD
 function NavbarNavItem (props){
     
         const style = ['nav-item']
@@ -17,3 +18,21 @@ function NavbarNavItem (props){
 }
 
 export default NavbarNavItem
+=======
+function NavbarNavItem(props) {
+  const styles = ['nav-item']
+
+  if (props.active) styles.push('active')
+  if (props.dropdown) styles.push('dropdown')
+
+  const className = styles.join(' ')
+
+  return (
+    <li className={className}>
+      { props.children }
+    </li>
+  )
+}
+
+export default NavbarNavItem
+>>>>>>> 8cf5c7faa82f2e49094cdd552af5c9f7726e43f5
