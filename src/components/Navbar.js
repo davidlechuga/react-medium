@@ -11,14 +11,22 @@ import NavbarNavLink from './NavbarNavLink'
 import DropdownMenu from './DropdownMenu'
 import DropdownMenuItem from './DropdownMenuItem'
 
-import FormImput from './FormInput'
+import FormInput from './FormInput'
+import FormCheckbox from './FormCheckbox'
+import Button from './Button'
 
 class Navbar extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      active: false
+      active: false,
+      options: [
+        { to: '/action', text: 'Action'},
+        { to: '/another-action', text: 'Another action'},
+        { divider: true },
+        { to: '/something-else-here', text: 'Something else here'}
+      ]
     }
   }
 
@@ -46,6 +54,7 @@ class Navbar extends Component {
                 label="go to home page (current)"
               />
             </NavbarNavItem>
+
             <NavbarNavItem>
               <NavbarNavLink
                 to="/link"
@@ -53,6 +62,7 @@ class Navbar extends Component {
                 label="go to link page"
               />
             </NavbarNavItem>
+
             <NavbarNavItem dropdown>
               <NavbarNavLink
                 id="navbarDropdown"
@@ -64,28 +74,24 @@ class Navbar extends Component {
                 dropdownToggle
                 onClick={this.toggleDropdownActive.bind(this)}
               />
+
               <DropdownMenu
                 ariaLabelledBy="dropdownmenu"
                 active={this.state.active}
               >
-                <DropdownMenuItem
-                  to="/action"
-                  text="action"
-                />
-
-                <DropdownMenuItem
-                  to="/another-action"
-                  text="Another action"
-                />
-
-                <div className="dropdown-divider"/>
-
-                <DropdownMenuItem
-                  to="/something-else-here"
-                  text="Something else here"
-                />
+                { this.state.options.map((option) => (
+                    !option.divider ? (
+                      <DropdownMenuItem
+                        to={option.to}
+                        text={option.text}
+                      />
+                    ) : (
+                      <div className="dropdown-divider"/>
+                    )
+                  ))}
               </DropdownMenu>
             </NavbarNavItem>
+
             <NavbarNavItem>
               <NavbarNavLink
                 className="nav-link disabled"
@@ -97,19 +103,21 @@ class Navbar extends Component {
             </NavbarNavItem>
           </NavbarNav>
 
-          <form
-            className="form-inline my-2 my-lg-0"
-          >
-            <FormImput
-            
-
+          <form className="form-inline my-2 my-lg-0">
+            <FormCheckbox
+              id="looky"
+              label="Tendré suerte?"
             />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
+            <FormInput
+              type="search"
+              placeholder="Search"
+              ariaLabel="Search"
+            />
+            <Button
+              btnClass="btn-outline-success"
               type="submit"
-            >
-              Search
-            </button>
+              text="search"
+            />
           </form>
         </NavbarCollapse>
       </nav>
